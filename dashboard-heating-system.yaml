@@ -41,20 +41,24 @@ views:
                 name: Hot water top (BT7)
               - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
             refresh_interval: 0
-            hours_to_show: 6
+            hours_to_show: 3
             grid_options:
               columns: full
               rows: 4
             logarithmic_scale: false
-          - type: markdown
-            content: |-
-              High pressure sensor (BP4):
-              ```
-              Ideal      : 20-25 bar (croaziera)
-              Acceptabil : 25-28 bar (sarcina / apa calda)  
-              Stres      : 29-31 bar
-              Avarie     :  > 32 bar
-              ```
+          - type: gauge
+            entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+            unit: bar
+            min: 0
+            max: 35
+            severity:
+              green: 15
+              yellow: 24
+              red: 29
+            needle: true
+            grid_options:
+              columns: 6
+              rows: auto
       - type: grid
         cards:
           - type: entities
@@ -96,8 +100,8 @@ views:
                 name: Compressor status
               - entity: sensor.smo_20_ams_20_10_defrosting_eb101_ep14
             refresh_interval: 0
-            hours_to_show: 6
-            grid_options: &ref_0
+            hours_to_show: 3
+            grid_options:
               columns: full
             logarithmic_scale: false
       - type: grid
@@ -128,7 +132,6 @@ views:
           - type: history-graph
             entities:
               - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
-                name: Supply line (BT12)
               - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
                 name: Return line (BT3)
               - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
@@ -146,7 +149,7 @@ views:
             entities:
               - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
             refresh_interval: 0
-            hours_to_show: 6
+            hours_to_show: 3
             grid_options:
               columns: full
               rows: 4
@@ -175,7 +178,7 @@ views:
               - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
               - entity: sensor.smo_20_ams_20_10_outdoor_temperature
             refresh_interval: 0
-            hours_to_show: 6
+            hours_to_show: 3
             grid_options:
               columns: full
               rows: 6
@@ -186,8 +189,9 @@ views:
               - entity: number.smo_20_ams_20_10_current_value
                 name: Current value (DM)
             refresh_interval: 0
-            hours_to_show: 6
-            grid_options: *ref_0
+            hours_to_show: 3
+            grid_options:
+              columns: full
             logarithmic_scale: false
     header:
       layout: responsive
@@ -418,6 +422,78 @@ views:
               columns: 6
               rows: 2
             hours_to_show: 1
+          - type: custom:mini-graph-card
+            name: Analiză Presiune vs. Debit
+            hours_to_show: 12
+            points_per_hour: 6
+            line_width: 2
+            entities:
+              - entity: sensor.nibe_bt25_external_supply_21123
+                name: Tur Real (BT25)
+                color: '#ff5e57'
+              - entity: sensor.nibe_bt25_external_supply_21123_calculated
+                name: Tur Calculat
+                color: '#ffdd59'
+              - entity: sensor.nibe_bp4_pressure_21123
+                name: Presiune Freon (BP4)
+                color: '#00d2d3'
+                y_axis: secondary
+              - entity: sensor.nibe_gp1_pump_speed_21123
+                name: Viteza Pompa (GP1)
+                color: '#1dd1a1'
+                y_axis: secondary
+            show:
+              fill: fade
+              labels: true
+              labels_secondary: true
+          - type: custom:mini-graph-card
+            name: Analiză Presiune vs. Debit
+            hours_to_show: 12
+            points_per_hour: 6
+            line_width: 2
+            entities:
+              - entity: sensor.nibe_bt25_external_supply_21123
+                name: Tur Real (BT25)
+                color: '#ff5e57'
+              - entity: sensor.nibe_bt25_external_supply_21123_calculated
+                name: Tur Calculat
+                color: '#ffdd59'
+              - entity: sensor.nibe_bp4_pressure_21123
+                name: Presiune Freon (BP4)
+                color: '#00d2d3'
+                y_axis: secondary
+              - entity: sensor.nibe_gp1_pump_speed_21123
+                name: Viteza Pompa (GP1)
+                color: '#1dd1a1'
+                y_axis: secondary
+            show:
+              fill: fade
+              labels: true
+              labels_secondary: true
+          - type: custom:mini-graph-card
+            name: Analiză Presiune vs. Debit
+            hours_to_show: 12
+            points_per_hour: 6
+            line_width: 2
+            entities:
+              - entity: sensor.nibe_bt25_external_supply_21123
+                name: Tur Real (BT25)
+                color: '#ff5e57'
+              - entity: sensor.nibe_bt25_external_supply_21123_calculated
+                name: Tur Calculat
+                color: '#ffdd59'
+              - entity: sensor.nibe_bp4_pressure_21123
+                name: Presiune Freon (BP4)
+                color: '#00d2d3'
+                y_axis: secondary
+              - entity: sensor.nibe_gp1_pump_speed_21123
+                name: Viteza Pompa (GP1)
+                color: '#1dd1a1'
+                y_axis: secondary
+            show:
+              fill: fade
+              labels: true
+              labels_secondary: true
         column_span: 2
       - type: grid
         cards:
@@ -790,3 +866,91 @@ views:
         type: markdown
         text_only: true
         content: '# Week'
+  - type: sections
+    title: Test
+    path: test
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mini-graph-card
+            name: FLUX TERMIC ȘI POMPĂ GP1
+            height: 300
+            line_width: 2
+            hours_to_show: 3
+            points_per_hour: 30
+            entities:
+              - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
+                name: Boiler (BT3)
+                color: '#e67e22'
+              - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
+                name: Tur Condensator (BT12)
+                color: '#e74c3c'
+              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
+                name: Viteza GP1 (%)
+                color: '#2ecc71'
+                y_axis: secondary
+            show:
+              fill: false
+              legend: true
+              state: true
+              graph_label: true
+              labels: true
+              labels_secondary: true
+          - type: custom:mini-graph-card
+            name: Compressor Diagnostics
+            height: 300
+            line_width: 2
+            hours_to_show: 3
+            points_per_hour: 60
+            entities:
+              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+                name: Discharge Temp (BT14)
+                color: '#f1c40f'
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+                name: High Pressure (BP4)
+                color: '#3498db'
+                y_axis: secondary
+              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
+                name: Pump Speed (GP1)
+                color: '#2ecc71'
+                y_axis: secondary
+            show:
+              fill: false
+              legend: true
+              state: true
+              graph_label: true
+              labels: true
+              labels_secondary: true
+          - type: custom:mini-graph-card
+            name: Compressor Strategy
+            height: 250
+            line_width: 2
+            hours_to_show: 4
+            points_per_hour: 60
+            entities:
+              - entity: sensor.smo_20_ams_20_10_requested_compressor_freq_eb101
+                name: Requested (Target)
+                color: '#9b59b6'
+              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
+                name: Current (Actual)
+                color: '#00d2d3'
+              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
+                name: Comp Status
+                color: '#ffffff'
+                show_graph: false
+            show:
+              fill: fade
+              legend: true
+              state: true
+              graph_label: true
+          - type: entities
+            title: Machine Status
+            entities:
+              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
+                name: Compressor Running
+                icon: mdi:engine
+              - entity: sensor.smo_20_ams_20_10_defrosting_eb101_ep14
+                name: Defrosting Mode
+                icon: mdi:snowflake-melt
+        column_span: 3
+    cards: []
