@@ -10,19 +10,19 @@ views:
             entities:
               - entity: sensor.smo_20_ams_20_10_outdoor_temperature
                 secondary_info: last-updated
-              - entity: >-
-                  number.smo_20_ams_20_10_room_sensor_set_point_value_heating_climate_system_1
-                secondary_info: last-updated
-                name: Room set temperature
-              - entity: sensor.smo_20_ams_20_10_room_temperature_bt50
-                secondary_info: last-updated
             state_color: true
             show_header_toggle: false
           - type: entities
             entities:
-              - entity: number.smo_20_ams_20_10_offset
-                name: Heating curve offset
+              - entity: >-
+                  number.smo_20_ams_20_10_room_sensor_set_point_value_heating_climate_system_1
+                type: custom:numberbox-card
                 secondary_info: last-updated
+              - entity: sensor.smo_20_ams_20_10_room_temperature_bt50
+                secondary_info: last-updated
+              - entity: number.smo_20_ams_20_10_offset
+                type: custom:numberbox-card
+                icon: mdi:temperature-celsius
             state_color: true
             show_header_toggle: false
           - type: entities
@@ -43,11 +43,8 @@ views:
                 name: Hot water top (BT7)
               - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
             refresh_interval: 0
-            grid_options:
-              columns: full
-              rows: 4
             logarithmic_scale: false
-            hours_to_show: 6
+            hours_to_show: 8
           - type: gauge
             entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
             min: 31
@@ -78,8 +75,9 @@ views:
           - type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
-                name: Compressor frequency
-                secondary_info: none
+                secondary_info: last-changed
+              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
+                secondary_info: last-changed
             state_color: true
             show_header_toggle: false
           - type: history-graph
@@ -90,13 +88,6 @@ views:
             grid_options:
               columns: full
             logarithmic_scale: false
-          - type: entities
-            entities:
-              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
-                name: Charge pump speed (GP1)
-                secondary_info: last-updated
-            state_color: true
-            show_header_toggle: false
           - type: history-graph
             entities:
               - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
