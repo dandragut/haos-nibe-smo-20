@@ -138,11 +138,10 @@ views:
             hours_to_show: 3
             grid_options:
               columns: full
-              rows: 4
+              rows: 5
             logarithmic_scale: false
             fit_y_data: true
             min_y_axis: 20
-            max_y_axis: 50
           - type: history-graph
             entities:
               - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
