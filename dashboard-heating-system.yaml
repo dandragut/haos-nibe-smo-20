@@ -6,61 +6,74 @@ views:
     sections:
       - type: grid
         cards:
-          - type: entities
+          - color: state
+            type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_outdoor_temperature
-                secondary_info: last-updated
-            state_color: true
+                secondary_info: last_updated
+                name:
+                  type: entity
             show_header_toggle: false
-          - type: entities
+          - color: state
+            type: entities
             entities:
-              - entity: >-
-                  number.smo_20_ams_20_10_room_sensor_set_point_value_heating_climate_system_1
+              - entity: number.smo_20_ams_20_10_room_sensor_set_point_value_heating_climate_system_1
                 type: custom:numberbox-card
                 secondary_info: last-updated
               - entity: sensor.smo_20_ams_20_10_room_temperature_bt50
-                secondary_info: last-updated
+                secondary_info: last_updated
+                name:
+                  type: entity
               - entity: number.smo_20_ams_20_10_offset
                 type: custom:numberbox-card
                 icon: mdi:temperature-celsius
-            state_color: true
             show_header_toggle: false
-          - type: entities
+          - color: state
+            type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_hot_water_top_bt7
-                name: Hot water top (BT14)
-                secondary_info: last-updated
+                secondary_info: last_updated
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
                 name: Hot water bottom (BT6)
-                secondary_info: last-updated
+                secondary_info: last_updated
+              - entity: switch.smo_20_ams_20_10_temporary_lux
+                name:
+                  type: entity
               - entity: select.smo_20_ams_20_10_hot_water_boost
-                secondary_info: none
-            state_color: true
+                name:
+                  type: entity
             show_header_toggle: false
           - type: history-graph
             entities:
               - entity: sensor.smo_20_ams_20_10_hot_water_top_bt7
-                name: Hot water top (BT7)
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
+                name:
+                  type: entity
+            hours_to_show: 12
             refresh_interval: 0
             logarithmic_scale: false
-            hours_to_show: 8
           - type: gauge
             entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
-            min: 31
             severity:
               green: 36
-              yellow: 40
-              red: 44
+              yellow: 39
+              red: 43
             needle: true
             grid_options:
               columns: 6
               rows: auto
-            max: 55
+            max: 46
+            min: 33
+            name:
+              type: entity
           - type: gauge
             entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
             unit: bar
-            min: 0
+            min: 10
             max: 35
             severity:
               green: 15
@@ -70,39 +83,77 @@ views:
             grid_options:
               columns: 6
               rows: auto
+            name:
+              type: entity
+          - color: state
+            show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.smo_20_ams_20_10_number_of_starts
+                show_last_changed: false
+                name: '# starts'
+                show_state: true
+              - entity: sensor.smo_20_ams_20_10_total_operating_time
+                name: total hours
+              - entity: sensor.smo_20_ams_20_10_of_which_hot_water
+                name: hours for water
+              - entity: binary_sensor.smo_20_ams_20_10_connectivity
+                show_state: true
+                name: " "
+              - entity: binary_sensor.smo_20_alarm
+                name: " "
+              - entity: update.smo_20_ams_20_10_firmware
+                name: " "
+            columns: 3
       - type: grid
         cards:
-          - type: entities
+          - color: state
+            type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
-                secondary_info: last-changed
+                secondary_info: last_changed
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
-                secondary_info: last-changed
-            state_color: true
+                secondary_info: last_changed
+                name:
+                  type: entity
             show_header_toggle: false
           - type: history-graph
-            entities:
-              - entity: binary_sensor.smo_20_ams_20_10_defrosting_eb101_ep14_binary
-              - entity: binary_sensor.smo_20_add_heat_in_tank
-            hours_to_show: 24
             grid_options:
               columns: full
+            entities:
+              - entity: binary_sensor.smo_20_ams_20_10_defrosting_eb101_ep14_binary
+                name:
+                  type: entity
+              - entity: binary_sensor.smo_20_add_heat_in_tank
+                name:
+                  type: entity
+            hours_to_show: 12
             logarithmic_scale: false
           - type: history-graph
+            grid_options:
+              columns: full
             entities:
               - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
                 name: Heating pump speed (GP1)
               - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
                 name: Compressor frequency
               - entity: sensor.smo_20_ams_20_10_requested_compressor_freq_eb101
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
                 name: Compressor status
               - entity: sensor.smo_20_ams_20_10_defrosting_eb101_ep14
+                name:
+                  type: entity
+            hours_to_show: 12
             refresh_interval: 0
-            hours_to_show: 6
-            grid_options:
-              columns: full
             logarithmic_scale: false
+            min_y_axis: 0
+            max_y_axis: 100
       - type: grid
         cards:
           - type: entities
@@ -113,46 +164,63 @@ views:
           - type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
-                secondary_info: none
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
-                secondary_info: none
+                name:
+                  type: entity
               - entity: sensor.flow_delta_temp_bt12_minus_bt3
-                secondary_info: none
-          - type: entities
+                name:
+                  type: entity
+          - color: state
+            type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
                 name: Discharge (BT14)
-                secondary_info: none
+              - entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_evaporator_eb101_bt16
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
-                secondary_info: none
-            state_color: true
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_low_pressure_eb101_bp8
+                name:
+                  type: entity
             show_header_toggle: false
           - type: history-graph
             entities:
               - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
-                name: Return line (BT3)
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
-            refresh_interval: 0
-            hours_to_show: 3
-            grid_options:
-              columns: full
-              rows: 5
-            logarithmic_scale: false
-            fit_y_data: true
-            min_y_axis: 20
-          - type: history-graph
-            entities:
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_evaporator_eb101_bt16
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_low_pressure_eb101_bp8
+                name:
+                  type: entity
+            hours_to_show: 12
             refresh_interval: 0
-            hours_to_show: 3
-            grid_options:
-              columns: full
-              rows: 4
             logarithmic_scale: false
-            max_y_axis: 40
-            min_y_axis: 0
+            min_y_axis: 20
+            fit_y_data: true
       - type: grid
         cards:
           - type: entities
@@ -163,32 +231,44 @@ views:
           - type: entities
             entities:
               - entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
-                secondary_info: none
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_external_return_line_bt71
-                secondary_info: none
+                name:
+                  type: entity
               - entity: sensor.flow_delta_temp_bt25_minus_bt71
-                secondary_info: last-updated
+                secondary_info: last_updated
+                name:
+                  type: entity
           - type: history-graph
-            entities:
-              - entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
-              - entity: sensor.smo_20_ams_20_10_external_return_line_bt71
-              - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
-              - entity: sensor.smo_20_ams_20_10_outdoor_temperature
-            refresh_interval: 0
-            hours_to_show: 4
             grid_options:
               columns: full
               rows: 6
+            entities:
+              - entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_external_return_line_bt71
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_outdoor_temperature
+                name:
+                  type: entity
+            hours_to_show: 12
+            refresh_interval: 0
             logarithmic_scale: false
             fit_y_data: true
           - type: history-graph
+            grid_options:
+              columns: full
             entities:
               - entity: number.smo_20_ams_20_10_current_value
                 name: Current value (DM)
+            hours_to_show: 12
             refresh_interval: 0
-            hours_to_show: 5
-            grid_options:
-              columns: full
             logarithmic_scale: false
     header:
       layout: responsive
@@ -219,18 +299,19 @@ views:
             logarithmic_scale: false
             title: Heating
           - type: history-graph
+            grid_options:
+              columns: full
+              rows: 6
             entities:
               - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
               - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
               - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+              - entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
               - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
-            refresh_interval: 0
-            hours_to_show: 24
-            grid_options:
-              columns: full
-              rows: 6
-            logarithmic_scale: false
             title: Hot water
+            hours_to_show: 24
+            refresh_interval: 0
+            logarithmic_scale: false
           - type: history-graph
             entities:
               - entity: binary_sensor.smo_20_add_heat_in_tank
@@ -294,484 +375,117 @@ views:
             logarithmic_scale: false
           - type: history-graph
             entities:
-              - entity: number.smo_20_ams_20_10_current_value
-                name: Current value (DM)
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
               - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
                 name: Heating pump speed (GP1)
               - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
                 name: Compressor frequency
-              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
-                name: Compressor status
+              - entity: number.smo_20_ams_20_10_current_value
+                name: Current value (DM)
+            hours_to_show: 24
             refresh_interval: 0
-            hours_to_show: 72
-            grid_options:
-              columns: full
+            show_names: true
             logarithmic_scale: false
+            expand_legend: false
+            grid_options:
+              rows: auto
+              columns: 15
         column_span: 2
+      - type: grid
+        cards:
+          - type: heading
+            heading: New section
+      - cards:
+          - type: heading
+            heading: History
+          - title: History
+            type: history-graph
+            hours_to_show: 651
+            entities:
+              - sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+              - sensor.smo_20_ams_20_10_hot_water_charging_bt6
+              - sensor.smo_20_ams_20_10_hot_water_top_bt7
     cards: []
     header:
       layout: responsive
       badges_position: bottom
       badges_wrap: wrap
-  - title: Nibe SMO 20 + AMS 20-10
-    sections:
-      - type: grid
-        cards:
-          - type: entities
-            entities:
-              - entity: sensor.smo_20_ams_20_10_outdoor_temperature
-                secondary_info: last-updated
-                name: Outdoor °C
-              - entity: sensor.smo_20_ams_20_10_outd_temperature_eb101_bt28
-                secondary_info: last-updated
-                name: Outdoor °C - Pump sensor (BT28)
-            title: Outside
-            grid_options:
-              columns: 16
-              rows: auto
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_outd_temperature_eb101_bt28
-            detail: 2
-            grid_options:
-              columns: 6
-              rows: 2
-            name: Outdoor °C - Pump sensor (B428)
-            hours_to_show: 12
-          - type: entities
-            entities:
-              - entity: sensor.smo_20_ams_20_10_room_temperature_bt50
-                secondary_info: last-updated
-                name: Room °C (BT50)
-              - entity: >-
-                  number.smo_20_ams_20_10_room_sensor_set_point_value_heating_climate_system_1
-                secondary_info: last-updated
-                name: Room °C - Set point value
-            title: Inside
-            grid_options:
-              columns: 17
-              rows: auto
-          - type: entities
-            entities:
-              - entity: sensor.smo_20_ams_20_10_hot_water_top_bt7
-                secondary_info: last-updated
-                name: Hot water top (BT7)
-              - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
-                secondary_info: last-updated
-                name: Hot water bottom (BT6)
-            title: Hot water
-            grid_options:
-              columns: 17
-              rows: auto
-            show_header_toggle: true
-            state_color: true
-          - type: markdown
-            content: |-
-              ```
-              Economic: 30°C <= BT6  <= 35°C
-              Normal  : 35°C <= BT6  <= 38°C
-              Lux     : 41°C <= BT6  <= 45°C
-              Oprire  : 55°C
-              ```
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
-            detail: 1
-            name: Hot water botom (BT6)
-            grid_options:
-              columns: 6
-              rows: 2
-            hours_to_show: 1
-          - type: custom:mini-graph-card
-            name: Analiză Presiune vs. Debit
-            hours_to_show: 12
-            points_per_hour: 6
-            line_width: 2
-            entities:
-              - entity: sensor.nibe_bt25_external_supply_21123
-                name: Tur Real (BT25)
-                color: '#ff5e57'
-              - entity: sensor.nibe_bt25_external_supply_21123_calculated
-                name: Tur Calculat
-                color: '#ffdd59'
-              - entity: sensor.nibe_bp4_pressure_21123
-                name: Presiune Freon (BP4)
-                color: '#00d2d3'
-                y_axis: secondary
-              - entity: sensor.nibe_gp1_pump_speed_21123
-                name: Viteza Pompa (GP1)
-                color: '#1dd1a1'
-                y_axis: secondary
-            show:
-              fill: fade
-              labels: true
-              labels_secondary: true
-          - type: custom:mini-graph-card
-            name: Analiză Presiune vs. Debit
-            hours_to_show: 12
-            points_per_hour: 6
-            line_width: 2
-            entities:
-              - entity: sensor.nibe_bt25_external_supply_21123
-                name: Tur Real (BT25)
-                color: '#ff5e57'
-              - entity: sensor.nibe_bt25_external_supply_21123_calculated
-                name: Tur Calculat
-                color: '#ffdd59'
-              - entity: sensor.nibe_bp4_pressure_21123
-                name: Presiune Freon (BP4)
-                color: '#00d2d3'
-                y_axis: secondary
-              - entity: sensor.nibe_gp1_pump_speed_21123
-                name: Viteza Pompa (GP1)
-                color: '#1dd1a1'
-                y_axis: secondary
-            show:
-              fill: fade
-              labels: true
-              labels_secondary: true
-          - type: custom:mini-graph-card
-            name: Analiză Presiune vs. Debit
-            hours_to_show: 12
-            points_per_hour: 6
-            line_width: 2
-            entities:
-              - entity: sensor.nibe_bt25_external_supply_21123
-                name: Tur Real (BT25)
-                color: '#ff5e57'
-              - entity: sensor.nibe_bt25_external_supply_21123_calculated
-                name: Tur Calculat
-                color: '#ffdd59'
-              - entity: sensor.nibe_bp4_pressure_21123
-                name: Presiune Freon (BP4)
-                color: '#00d2d3'
-                y_axis: secondary
-              - entity: sensor.nibe_gp1_pump_speed_21123
-                name: Viteza Pompa (GP1)
-                color: '#1dd1a1'
-                y_axis: secondary
-            show:
-              fill: fade
-              labels: true
-              labels_secondary: true
-        column_span: 2
-      - type: grid
-        cards:
-          - type: heading
-            heading: Compressor
-            heading_style: title
-          - type: tile
-            entity: number.smo_20_ams_20_10_offset
-            name: Curve offset
-            vertical: false
-            features:
-              - type: numeric-input
-                style: buttons
-            features_position: inline
-          - graph: line
-            type: sensor
-            entity: number.smo_20_ams_20_10_current_value
-            grid_options:
-              columns: 10
-              rows: 2
-            detail: 1
-            name: Current value
-            hours_to_show: 3
-            icon: mdi:metronome
-          - type: entities
-            entities:
-              - entity: sensor.smo_20_status_compressor_text
-                name: Compressort status
-                secondary_info: last-updated
-              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
-                name: Current compressor frequency
-                secondary_info: last-updated
-              - entity: sensor.smo_20_ams_20_10_requested_compressor_freq_eb101
-                name: Requested compressor frequency
-                secondary_info: last-updated
-              - entity: number.smo_20_ams_20_10_change_in_curve
-                secondary_info: last-updated
-              - entity: number.smo_20_ams_20_10_offset
-            title: Compressor
-            grid_options:
-              columns: 18
-              rows: auto
-          - type: history-graph
-            entities:
-              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
-                name: Compressor frequency history
-            hours_to_show: 24
-            refresh_interval: 0
-            grid_options:
-              columns: full
-          - type: history-graph
-            entities:
-              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
-                name: Compressor status history
-            hours_to_show: 24
-            grid_options:
-              columns: full
-          - type: markdown
-            content: '-------'
-            text_only: true
-          - type: history-graph
-            entities:
-              - entity: binary_sensor.smo_20_add_heat_in_tank
-                name: .
-            hours_to_show: 24
-            grid_options:
-              columns: full
-            logarithmic_scale: false
-            title: Additional heat in tank
-          - type: history-graph
-            entities:
-              - entity: number.smo_20_ams_20_10_current_value
-                name: DM
-            hours_to_show: 24
-            grid_options:
-              columns: full
-              rows: 4
-        column_span: 2
-      - type: grid
-        cards:
-          - type: heading
-            heading: House fluids (water)
-            heading_style: title
-          - type: entities
-            entities:
-              - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
-                name: Supply line (BT12)
-                secondary_info: last-updated
-              - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
-              - entity: number.flow_delta_temp_bt12_minus_bt3
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
-            grid_options:
-              columns: full
-            detail: 2
-            hours_to_show: 1
-            name: Calculated supply climate system
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
-            detail: 1
-            name: Supply line (BT12)
-            grid_options:
-              columns: full
-            hours_to_show: 1
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
-            grid_options:
-              columns: full
-            detail: 2
-            hours_to_show: 1
-            name: Return line (BT3)
-          - graph: line
-            type: sensor
-            entity: number.flow_delta_temp_bt12_minus_bt3
-            grid_options:
-              columns: full
-            detail: 1
-            name: Delta T (BT12 minus BT3)
-            hours_to_show: 1
-          - graph: line
-            entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
-            name: Pump speed (GP1)
-            type: sensor
-            grid_options:
-              columns: full
-            detail: 2
-            hours_to_show: 1
-          - type: history-graph
-            entities:
-              - entity: binary_sensor.smo_20_ams_20_10_charge_pump_gp12
-                name: Pump (GP12)
-            hours_to_show: 24
-            grid_options:
-              columns: full
-            logarithmic_scale: false
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
-            grid_options:
-              columns: full
-            detail: 2
-            hours_to_show: 1
-            name: External supply line (BT25)
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_external_return_line_bt71
-            grid_options:
-              columns: full
-            detail: 2
-            name: External return line (BT71)
-            hours_to_show: 1
-      - type: grid
-        cards:
-          - type: heading
-            heading_style: title
-            heading: 'Machine Side: Gasses (Hot & High Pressure)'
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
-            detail: 1
-            grid_options:
-              columns: full
-              rows: 2
-            hours_to_show: 1
-            name: Discharge (BT14)
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
-            grid_options:
-              columns: full
-            detail: 1
-            hours_to_show: 1
-            name: Suction gas (BT17)
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
-            grid_options:
-              columns: full
-            detail: 1
-            name: High pressure sensor (BP4)
-            hours_to_show: 1
-          - type: markdown
-            content: |-
-              High pressure sensor (BP4):
-              ```
-              Ideal      : 20-25 bar (croaziera)
-              Acceptabil : 25-28 bar (sarcina / apa calda)  
-              Stres      : 29-31 bar
-              Avarie     :  > 32 bar
-              ```
-      - type: grid
-        cards:
-          - type: heading
-            heading: 'Machine Side: Liquids/Refrigerant'
-            heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_liquid_line_eb101_bt15
-            grid_options:
-              columns: full
-            detail: 1
-            name: Liquid line (BT15)
-            hours_to_show: 1
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_evaporator_eb101_bt16
-            detail: 2
-            grid_options:
-              columns: full
-            hours_to_show: 1
-            name: Evaporator (BT16)
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_low_pressure_eb101_bp8
-            name: Low pressure (BP8)
-            grid_options:
-              columns: full
-            detail: 1
-            hours_to_show: 24
-      - type: grid
-        cards:
-          - type: heading
-            heading_style: title
-            heading: Info
-          - show_name: true
-            show_icon: true
-            show_state: true
-            type: glance
-            entities:
-              - entity: binary_sensor.smo_20_ams_20_10_connectivity
-                name: ' '
-              - entity: binary_sensor.smo_20_alarm
-                name: Alarm?
-              - entity: update.smo_20_ams_20_10_firmware
-                name: Firmware
-            columns: 3
-          - show_name: true
-            show_icon: true
-            show_state: true
-            type: glance
-            entities:
-              - entity: sensor.smo_20_ams_20_10_number_of_starts
-                show_last_changed: false
-                name: '# starts'
-              - entity: sensor.smo_20_ams_20_10_total_operating_time
-                name: total hours
-              - entity: sensor.smo_20_ams_20_10_of_which_hot_water
-                name: hours for water
-            state_color: false
-          - type: glance
-            entities:
-              - entity: sensor.smo_20_ams_20_10_defrosting_eb101_ep14
-                name: Defrosting?
-              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
-                name: Compressor status
-          - type: glance
-            entities:
-              - entity: number.smo_20_ams_20_10_climate_system
-                name: Indoor target °C
-              - entity: number.smo_20_ams_20_10_offset
-                name: Curve Offset
-              - entity: number.smo_20_ams_20_10_change_in_curve
-                name: Change in curve
-          - type: glance
-            entities:
-              - entity: switch.smo_20_ams_20_10_temporary_lux
-                name: Temporary lux
-              - entity: select.smo_20_ams_20_10_hot_water_boost
-                name: Hot water boost
-          - type: tile
-            entity: binary_sensor.smo_20_ams_20_10_extern_adjustment_climate_system_1
-            name: Extern. adjustment climate system
-            vertical: false
-            features_position: bottom
-            grid_options:
-              columns: 12
-              rows: 1
-          - type: tile
-            entity: sensor.smo_20_ams_20_10_version_eb101
-            vertical: false
-            features_position: bottom
-            name: Version
-            grid_options:
-              columns: 12
-              rows: 1
-          - graph: line
-            type: sensor
-            entity: sensor.smo_20_ams_20_10_slave_eb101
-            grid_options:
-              columns: 12
-              rows: 2
-            detail: 1
-            name: Slave (EB101)
-            hours_to_show: 24
-          - type: logbook
-            target:
-              device_id: cec49df9567040d79e72e40da1a6ea68
-        column_span: 5
-    type: sections
-    max_columns: 5
-    cards: []
-    icon: mdi:heat-pump
-    subview: false
-    dense_section_placement: true
-    header:
-      layout: responsive
-      badges_position: bottom
-      badges_wrap: scroll
-  - type: masonry
+  - type: panel
     path: changelog
     title: Changelog
     cards:
       - type: logbook
         target:
           device_id: cec49df9567040d79e72e40da1a6ea68
+        hours_to_show: 4
+        grid_options:
+          columns: full
+          rows: 6
+    icon: mdi:radar
+    subview: true
+  - type: sections
+    max_columns: 4
+    title: 1 day
+    path: 1-day
+    sections:
+      - type: grid
+        cards:
+          - type: history-graph
+            grid_options:
+              columns: full
+              rows: 6
+            entities:
+              - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
+              - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
+              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+              - entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
+              - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
+              - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
+            title: Hot water
+            hours_to_show: 24
+            refresh_interval: 0
+            logarithmic_scale: false
+          - type: history-graph
+            grid_options:
+              columns: full
+            entities:
+              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+              - entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+              - entity: sensor.smo_20_ams_20_10_low_pressure_eb101_bp8
+              - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
+              - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
+              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
+              - entity: sensor.smo_20_ams_20_10_requested_compressor_freq_eb101
+              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
+            title: Hot gases
+            hours_to_show: 12
+            refresh_interval: 0
+            logarithmic_scale: false
+        column_span: 2
+      - type: grid
+        cards:
+          - type: history-graph
+            grid_options:
+              columns: full
+            entities:
+              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+              - entity: sensor.smo_20_ams_20_10_suction_gas_eb101_bt17
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+              - entity: sensor.smo_20_ams_20_10_low_pressure_eb101_bp8
+              - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
+              - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
+              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
+              - entity: sensor.smo_20_ams_20_10_requested_compressor_freq_eb101
+              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
+            title: Hot gases
+            hours_to_show: 12
+            refresh_interval: 0
+            logarithmic_scale: false
+          - type: heading
+            heading: New section
+        column_span: 2
+    cards: []
   - type: sections
     max_columns: 4
     title: Week
@@ -790,20 +504,17 @@ views:
               columns: full
               rows: 4
           - type: history-graph
-            entities:
-              - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
-                name: Calculatedd supply
-              - entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
-                name:
-                  type: entity
-              - entity: sensor.smo_20_ams_20_10_external_return_line_bt71
-                name:
-                  type: entity
-            refresh_interval: 0
-            hours_to_show: 168
             grid_options:
               columns: full
               rows: 6
+            entities:
+              - entity: sensor.smo_20_ams_20_10_hot_water_top_bt7
+              - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+            hours_to_show: 168
+            refresh_interval: 0
             logarithmic_scale: false
           - type: history-graph
             entities:
@@ -829,6 +540,111 @@ views:
               columns: full
             logarithmic_scale: false
           - type: history-graph
+            grid_options:
+              columns: full
+            entities:
+              - entity: number.smo_20_ams_20_10_current_value
+                name: Current value (DM)
+              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
+                name: Heating pump speed (GP1)
+              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
+                name: Compressor frequency
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+              - entity: sensor.smo_20_ams_20_10_low_pressure_eb101_bp8
+            hours_to_show: 168
+            refresh_interval: 0
+            logarithmic_scale: false
+            expand_legend: true
+        column_span: 4
+    header:
+      card:
+        type: markdown
+        text_only: true
+        content: '# Week'
+    dense_section_placement: true
+    cards: []
+  - type: sections
+    title: Changelog
+    cards: []
+    icon: mdi:radar
+    subview: false
+    sections:
+      - type: grid
+        cards:
+          - type: logbook
+            target:
+              device_id: cec49df9567040d79e72e40da1a6ea68
+            hours_to_show: 4
+            grid_options:
+              columns: full
+              rows: 14
+        column_span: 2
+  - type: sections
+    max_columns: 4
+    title: 2 Weeks
+    path: 2weeks
+    icon: mdi:calendar-week-outline
+    sections:
+      - type: grid
+        cards:
+          - type: history-graph
+            entities:
+              - entity: sensor.smo_20_ams_20_10_outdoor_temperature
+            refresh_interval: 0
+            logarithmic_scale: false
+            grid_options:
+              columns: full
+              rows: 4
+            hours_to_show: 336
+          - type: history-graph
+            grid_options:
+              columns: full
+            entities:
+              - entity: sensor.smo_20_ams_20_10_hot_water_top_bt7
+              - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
+            hours_to_show: 336
+            refresh_interval: 0
+            logarithmic_scale: false
+          - type: history-graph
+            entities:
+              - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
+                name:
+                  type: entity
+            refresh_interval: 0
+            hours_to_show: 336
+            grid_options:
+              columns: full
+              rows: 5
+            logarithmic_scale: false
+          - type: history-graph
+            entities:
+              - entity: sensor.smo_20_ams_20_10_calculated_supply_climate_system_1
+                name: Calculatedd supply
+              - entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
+                name:
+                  type: entity
+              - entity: sensor.smo_20_ams_20_10_external_return_line_bt71
+                name:
+                  type: entity
+            refresh_interval: 0
+            hours_to_show: 336
+            grid_options:
+              columns: full
+              rows: 5
+            logarithmic_scale: false
+          - type: history-graph
+            entities:
+              - entity: binary_sensor.smo_20_add_heat_in_tank
+                name: Additional heat
+            hours_to_show: 360
+            grid_options:
+              columns: full
+            logarithmic_scale: false
+          - type: history-graph
             entities:
               - entity: number.smo_20_ams_20_10_current_value
                 name: Current value (DM)
@@ -848,94 +664,29 @@ views:
       card:
         type: markdown
         text_only: true
-        content: '# Week'
+        content: '# 2 Weeks'
     dense_section_placement: true
     cards: []
   - type: sections
-    title: Test
-    path: test
+    title: Month
+    path: month
     sections:
       - type: grid
         cards:
-          - type: custom:mini-graph-card
-            name: FLUX TERMIC ȘI POMPĂ GP1
-            height: 300
-            line_width: 2
-            hours_to_show: 3
-            points_per_hour: 30
+          - type: history-graph
             entities:
-              - entity: sensor.smo_20_ams_20_10_return_line_eb101_bt3
-                name: Boiler (BT3)
-                color: '#e67e22'
-              - entity: sensor.smo_20_ams_20_10_supply_line_eb101_bt12
-                name: Tur Condensator (BT12)
-                color: '#e74c3c'
-              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
-                name: Viteza GP1 (%)
-                color: '#2ecc71'
-                y_axis: secondary
-            show:
-              fill: false
-              legend: true
-              state: true
-              graph_label: true
-              labels: true
-              labels_secondary: true
-          - type: custom:mini-graph-card
-            name: Compressor Diagnostics
-            height: 300
-            line_width: 2
-            hours_to_show: 3
-            points_per_hour: 60
-            entities:
-              - entity: sensor.smo_20_ams_20_10_discharge_eb101_bt14
-                name: Discharge Temp (BT14)
-                color: '#f1c40f'
+              - entity: sensor.smo_20_ams_20_10_hot_water_top_bt7
+              - entity: sensor.smo_20_ams_20_10_hot_water_charging_bt6
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_high_pressure_sensor_eb101_bp4
-                name: High Pressure (BP4)
-                color: '#3498db'
-                y_axis: secondary
-              - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
-                name: Pump Speed (GP1)
-                color: '#2ecc71'
-                y_axis: secondary
-            show:
-              fill: false
-              legend: true
-              state: true
-              graph_label: true
-              labels: true
-              labels_secondary: true
-          - type: custom:mini-graph-card
-            name: Compressor Strategy
-            height: 250
-            line_width: 2
-            hours_to_show: 4
-            points_per_hour: 60
-            entities:
-              - entity: sensor.smo_20_ams_20_10_requested_compressor_freq_eb101
-                name: Requested (Target)
-                color: '#9b59b6'
-              - entity: sensor.smo_20_ams_20_10_current_compressor_frequency_eb101
-                name: Current (Actual)
-                color: '#00d2d3'
-              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
-                name: Comp Status
-                color: '#ffffff'
-                show_graph: false
-            show:
-              fill: fade
-              legend: true
-              state: true
-              graph_label: true
-          - type: entities
-            title: Machine Status
-            entities:
-              - entity: sensor.smo_20_ams_20_10_status_compressor_eb101
-                name: Compressor Running
-                icon: mdi:engine
-              - entity: sensor.smo_20_ams_20_10_defrosting_eb101_ep14
-                name: Defrosting Mode
-                icon: mdi:snowflake-melt
-        column_span: 3
+              - entity: binary_sensor.smo_20_add_heat_in_tank
+            refresh_interval: 0
+            logarithmic_scale: false
+            hours_to_show: 720
+            grid_options:
+              columns: full
+        column_span: 4
     cards: []
+    max_columns: 4
+    icon: mdi:calendar-month-outline
