@@ -11,5 +11,5 @@ Home Assistant - Nibe SMO-20
    [dashboard-heating-system.yaml](https://raw.githubusercontent.com/dandragut/haos-nibe-smo-20/refs/heads/main/dashboard-heating-system.yaml)
 
 <a href="https://github.com/user-attachments/assets/d8b5db27-e81b-4529-ba5c-da69c6aea043" target="_blank">
-  <img width="800" src="https://github.com/user-attachments/assets/d8b5db27-e81b-4529-ba5c-da69c6aea043" />
+  <img width="800" src="https://raw.githubusercontent.com/dandragut/haos-nibe-smo-20/refs/heads/main/wiki/dashboard.png" />
 </a>
