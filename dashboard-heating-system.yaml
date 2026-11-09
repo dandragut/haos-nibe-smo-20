@@ -119,6 +119,9 @@ views:
               - entity: sensor.smo_20_fan_speed_step
                 name:
                   type: entity
+                color: state
+                icon: mdi:fan
+                secondary_info: last_changed
               - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
                 secondary_info: last_changed
                 name:
@@ -126,19 +129,15 @@ views:
               - entity: sensor.smo_20_heat_capacity_eb101
                 name:
                   type: entity
-            show_header_toggle: false
-          - type: history-graph
-            grid_options:
-              columns: full
-            entities:
+                icon: mdi:heat-wave
+                color: none
+                secondary_info: last_changed
               - entity: binary_sensor.smo_20_ams_20_10_defrosting_eb101_ep14_binary
+                color: state
+                icon: mdi:car-defrost-front
                 name:
                   type: entity
-              - entity: binary_sensor.smo_20_add_heat_in_tank
-                name:
-                  type: entity
-            hours_to_show: 12
-            logarithmic_scale: false
+            show_header_toggle: false
           - type: history-graph
             grid_options:
               columns: full
