@@ -1,7 +1,7 @@
 views:
   - type: sections
     cards: []
-    title: House fluids (water)
+    title: Now
     icon: mdi:heat-pump-outline
     sections:
       - type: grid
@@ -116,8 +116,14 @@ views:
                 secondary_info: last_changed
                 name:
                   type: entity
+              - entity: sensor.smo_20_fan_speed_step
+                name:
+                  type: entity
               - entity: sensor.smo_20_ams_20_10_heating_medium_pump_speed_gp1
                 secondary_info: last_changed
+                name:
+                  type: entity
+              - entity: sensor.smo_20_heat_capacity_eb101
                 name:
                   type: entity
             show_header_toggle: false
@@ -243,7 +249,7 @@ views:
           - type: history-graph
             grid_options:
               columns: full
-              rows: 6
+              rows: auto
             entities:
               - entity: sensor.smo_20_ams_20_10_external_supply_line_bt25
                 name:
@@ -257,27 +263,23 @@ views:
               - entity: sensor.smo_20_ams_20_10_outdoor_temperature
                 name:
                   type: entity
+              - entity: number.smo_20_ams_20_10_current_value
+                name: Current value (DM)
+              - entity: sensor.smo_20_heat_capacity_eb101
+                name:
+                  type: entity
             hours_to_show: 12
             refresh_interval: 0
             logarithmic_scale: false
             fit_y_data: true
-          - type: history-graph
-            grid_options:
-              columns: full
-            entities:
-              - entity: number.smo_20_ams_20_10_current_value
-                name: Current value (DM)
-            hours_to_show: 12
-            refresh_interval: 0
-            logarithmic_scale: false
     header:
       layout: responsive
       badges_position: bottom
       badges_wrap: wrap
+    show_icon_and_title: true
     max_columns: 4
   - type: sections
     path: pdc-24h
-    max_columns: 4
     title: Historic
     sections:
       - type: grid
@@ -410,22 +412,12 @@ views:
       layout: responsive
       badges_position: bottom
       badges_wrap: wrap
-  - type: panel
-    path: changelog
-    title: Changelog
-    cards:
-      - type: logbook
-        target:
-          device_id: cec49df9567040d79e72e40da1a6ea68
-        hours_to_show: 4
-        grid_options:
-          columns: full
-          rows: 6
-    icon: mdi:radar
-    subview: true
-  - type: sections
+    top_margin: false
+    show_icon_and_title: true
+    icon: mdi:history
     max_columns: 4
-    title: 1 day
+  - type: sections
+    title: Day
     path: 1-day
     sections:
       - type: grid
@@ -486,11 +478,13 @@ views:
             heading: New section
         column_span: 2
     cards: []
-  - type: sections
+    show_icon_and_title: true
+    icon: mdi:calendar-today
     max_columns: 4
-    title: Week
-    path: week
-    icon: mdi:calendar-week-outline
+  - type: sections
+    title: 1 Week
+    path: 1-week
+    icon: mdi:calendar-week
     sections:
       - type: grid
         cards:
@@ -563,27 +557,12 @@ views:
         content: '# Week'
     dense_section_placement: true
     cards: []
-  - type: sections
-    title: Changelog
-    cards: []
-    icon: mdi:radar
-    subview: false
-    sections:
-      - type: grid
-        cards:
-          - type: logbook
-            target:
-              device_id: cec49df9567040d79e72e40da1a6ea68
-            hours_to_show: 4
-            grid_options:
-              columns: full
-              rows: 14
-        column_span: 2
-  - type: sections
+    show_icon_and_title: true
     max_columns: 4
+  - type: sections
     title: 2 Weeks
-    path: 2weeks
-    icon: mdi:calendar-week-outline
+    path: 2-weeks
+    icon: mdi:calendar-week
     sections:
       - type: grid
         cards:
@@ -667,9 +646,11 @@ views:
         content: '# 2 Weeks'
     dense_section_placement: true
     cards: []
+    show_icon_and_title: true
+    max_columns: 4
   - type: sections
     title: Month
-    path: month
+    path: 1-month
     sections:
       - type: grid
         cards:
@@ -688,5 +669,23 @@ views:
               columns: full
         column_span: 4
     cards: []
+    icon: mdi:calendar-month
+    show_icon_and_title: true
     max_columns: 4
-    icon: mdi:calendar-month-outline
+  - type: sections
+    title: Changelog
+    cards: []
+    icon: mdi:radar
+    subview: false
+    sections:
+      - type: grid
+        cards:
+          - type: logbook
+            target:
+              device_id: cec49df9567040d79e72e40da1a6ea68
+            hours_to_show: 4
+            grid_options:
+              columns: full
+              rows: 14
+        column_span: 2
+    show_icon_and_title: true
